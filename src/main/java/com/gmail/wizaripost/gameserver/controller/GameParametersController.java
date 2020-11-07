@@ -14,12 +14,16 @@ public class GameParametersController {
 
     //    public GameParameters getParams (@RequestBody Request request){
 
-    @RequestMapping(method = RequestMethod.GET, consumes = "text/plain")
-    public String getParams(@RequestBody String request) {
-        return service.getParams(request);
+    @RequestMapping(method = RequestMethod.POST, consumes = "text/plain", produces = "application/json;charset=UTF-8")
+    public String getParams(
+            @RequestBody String request,
+            @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
+        return service.getParams(request, gameInstanceID);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+
+
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String getGameSessionId(
             @RequestParam(value = "languageCode", required = false, defaultValue = "EN") String languageCode,
             @RequestParam(value = "gameID", required = false) Long gameID,
