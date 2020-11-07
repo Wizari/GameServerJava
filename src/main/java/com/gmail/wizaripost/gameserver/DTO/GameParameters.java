@@ -1,4 +1,4 @@
-package com.gmail.wizaripost.gameserver.entity;
+package com.gmail.wizaripost.gameserver.DTO;
 
 public class GameParameters {
     public String gameParameters;

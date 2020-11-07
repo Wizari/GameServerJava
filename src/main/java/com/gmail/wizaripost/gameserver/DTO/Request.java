@@ -1,18 +1,27 @@
-package com.gmail.wizaripost.gameserver.entity;
+package com.gmail.wizaripost.gameserver.DTO;
 
 public class Request {
     private String a;
     private Long b;
     private Long ls;
-
-    public Request(String a, Long b, Long ls) {
-        this.a = a;
-        this.b = b;
-        this.ls = ls;
-    }
+    private Language l;
 
     public Request() {
     }
+
+    public Request(String a, Long b, Long ls, Language l) {
+        this.a = a;
+        this.b = b;
+        this.ls = ls;
+        this.l = l;
+    }
+
+//    public Request(String a, Long b, Long ls) {
+//        this.a = a;
+//        this.b = b;
+//        this.ls = ls;
+//        this.l = new Language("231","123");
+//    }
 
     public String getA() {
         return a;
@@ -36,5 +45,13 @@ public class Request {
 
     public void setLs(Long ls) {
         this.ls = ls;
+    }
+
+    public Language getL() {
+        return l;
+    }
+
+    public void setL(Language l) {
+        this.l = l;
     }
 }
