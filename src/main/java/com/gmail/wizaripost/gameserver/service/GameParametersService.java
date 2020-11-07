@@ -24,6 +24,20 @@ public class GameParametersService implements IGameParametersService {
             return stringStorage.getGameInit();
         }
 
+        if (request.getA().equals("TakeWin")) {
+            return stringStorage.getTakeWin();
+        }
+        if (request.getA().equals("Bet")) {
+            int a = 1; // Начальное значение диапазона - "от"
+            int b = 10; // Конечное значение диапазона - "до"
+            int randomNumber = a + (int) (Math.random() * b);
+            if (randomNumber <= 5) {
+                return stringStorage.getBaseGameWin();
+
+            } else {
+                return stringStorage.getBaseGameLose();
+            }
+        }
         return null;
     }
 
