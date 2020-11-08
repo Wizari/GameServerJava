@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.wizaripost.gameserver.DTO.Request;
+import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersRespons;
 import com.gmail.wizaripost.gameserver.utils.ChangeResponse;
 
 
@@ -22,7 +23,7 @@ public class GameParametersService implements IGameParametersService {
 
     @Override
     public String getParams(String stringRequest, String gameInstanceID) {
-        Request request = parsingJsonStringIntoJsonNode(stringRequest);
+        Request request = parsingJsonStringIntoRequest(stringRequest);
         if (request.getA().equals("Init")) {
 //            return stringStorage.getGameInit();
             return changeResponse.changeCredits(stringStorage.getGameInit(), "c1", credits);
@@ -39,7 +40,7 @@ public class GameParametersService implements IGameParametersService {
     }
 
     private String bet(String stringRequest){
-        Request request = parsingJsonStringIntoJsonNode(stringRequest);
+        Request request = parsingJsonStringIntoRequest(stringRequest);
         if (!needTakeWin) {
             double bet = request.getB() * request.getLs();
             int a = 1, b = 10;
@@ -56,7 +57,7 @@ public class GameParametersService implements IGameParametersService {
         return stringStorage.needTakeWin;
     }
 
-    private Request parsingJsonStringIntoJsonNode(String string) {
+    private Request parsingJsonStringIntoRequest(String string) {
         Request request = new Request();
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -67,6 +68,18 @@ public class GameParametersService implements IGameParametersService {
         }
         return request;
     }
+
+//    private GameParametersRespons parsingJsonStringIntoGameParametersJSON(String string) {
+//        GameParametersRespons respons = new GameParametersRespons();
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            JsonNode jsonObj = mapper.readTree(string);
+//            respons = mapper.treeToValue(jsonObj, GameParametersRespons.class);
+//        } catch (JsonProcessingException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return respons;
+//    }
 
 }
 
