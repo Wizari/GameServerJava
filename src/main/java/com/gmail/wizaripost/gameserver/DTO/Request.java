@@ -22,13 +22,6 @@ public class Request {
         this.l = l;
     }
 
-//    public Request(String a, Long b, Long ls) {
-//        this.a = a;
-//        this.b = b;
-//        this.ls = ls;
-//        this.l = new Language("231","123");
-//    }
-
     public String getA() {
         return a;
     }

@@ -20,7 +20,6 @@ public class GameParametersService implements IGameParametersService {
 
     @Override
     public String getGameSessionId(String languageCode, Long gameID, String gameMode) {
-        credits = 5000.00;
         return stringStorage.getGameSession();
 
     }
@@ -30,6 +29,8 @@ public class GameParametersService implements IGameParametersService {
         request = parsingJsonStringIntoRequest(stringRequest);
 
         if (request.getA().equals("Init")) {
+            credits = 5000.00;
+            needTakeWin = false;
             gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
             gameParametersResponse.getC().setC1(credits);
             return gameParametersResponse;
