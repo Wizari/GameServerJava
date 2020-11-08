@@ -4,57 +4,69 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.wizaripost.gameserver.DTO.Request;
-import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersRespons;
+import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersResponse;
 import com.gmail.wizaripost.gameserver.utils.ChangeResponse;
 
 
 public class GameParametersService implements IGameParametersService {
     private StringStorage stringStorage = new StringStorage();
     private ChangeResponse changeResponse = new ChangeResponse();
-    private double credits = 50000000.00;
+    private double credits = 5000.00;
     boolean needTakeWin = false;
+    GameParametersResponse gameParametersRespons;
+
 
     @Override
     public String getGameSessionId(String languageCode, Long gameID, String gameMode) {
-        credits = 50000000.00;
+        credits = 5000.00;
         return stringStorage.getGameSession();
 
     }
 
     @Override
-    public String getParams(String stringRequest, String gameInstanceID) {
+    public GameParametersResponse getParams(String stringRequest, String gameInstanceID) {
         Request request = parsingJsonStringIntoRequest(stringRequest);
+
         if (request.getA().equals("Init")) {
-//            return stringStorage.getGameInit();
-            return changeResponse.changeCredits(stringStorage.getGameInit(), "c1", credits);
+            gameParametersRespons = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
+            gameParametersRespons.getC().setC1(credits);
+            return gameParametersRespons;
         }
         if (request.getA().equals("TakeWin")) {
             needTakeWin = false;
-//            return stringStorage.getTakeWin();
-            return changeResponse.changeCredits(stringStorage.getTakeWin(), "c1", credits);
+            credits += 100;
+//            String s1 = String.format("%.2f\n", 4.999995E7);
+//            System.out.println(s1 + " = 4.999995E7");
+            gameParametersRespons = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+            gameParametersRespons.getC().setC1(credits);
+            return gameParametersRespons;
         }
         if (request.getA().equals("Bet")) {
+            credits -= request.getB() * request.getLs();
+            ;
             return this.bet(stringRequest);
         }
         return null;
     }
 
-    private String bet(String stringRequest){
-        Request request = parsingJsonStringIntoRequest(stringRequest);
+    private GameParametersResponse bet(String stringRequest) {
         if (!needTakeWin) {
-            double bet = request.getB() * request.getLs();
+//            int a = 1, b = 10;
             int a = 1, b = 10;
             int randomNumber = a + (int) (Math.random() * b);
             if (randomNumber <= 5) {
-                credits += bet;
+                gameParametersRespons = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameWin());
+                gameParametersRespons.getC().setC1(credits);
                 needTakeWin = true;
-                return changeResponse.changeCredits(stringStorage.getBaseGameWin(), "c1", credits);
+                return gameParametersRespons;
             } else {
-                credits -= bet;
-                return changeResponse.changeCredits(stringStorage.getBaseGameLose(), "c1", credits);
+                gameParametersRespons = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameLose());
+                gameParametersRespons.getC().setC1(credits);
+                return gameParametersRespons;
             }
         }
-        return stringStorage.needTakeWin;
+//        return stringStorage.needTakeWin;
+        return new GameParametersResponse();
     }
 
     private Request parsingJsonStringIntoRequest(String string) {
@@ -69,17 +81,17 @@ public class GameParametersService implements IGameParametersService {
         return request;
     }
 
-//    private GameParametersRespons parsingJsonStringIntoGameParametersJSON(String string) {
-//        GameParametersRespons respons = new GameParametersRespons();
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            JsonNode jsonObj = mapper.readTree(string);
-//            respons = mapper.treeToValue(jsonObj, GameParametersRespons.class);
-//        } catch (JsonProcessingException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return respons;
-//    }
+    private GameParametersResponse parsingJsonStringIntoGameParametersJSON(String string) {
+        GameParametersResponse params = new GameParametersResponse();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode jsonObj = mapper.readTree(string);
+            params = mapper.treeToValue(jsonObj, GameParametersResponse.class);
+        } catch (JsonProcessingException e) {
+            System.out.println(e.getMessage());
+        }
+        return params;
+    }
 
 }
 

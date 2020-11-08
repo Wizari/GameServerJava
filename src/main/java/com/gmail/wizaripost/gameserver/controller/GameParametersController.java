@@ -1,7 +1,7 @@
 package com.gmail.wizaripost.gameserver.controller;
 
 
-import com.gmail.wizaripost.gameserver.DTO.GameParameters;
+import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersResponse;
 import com.gmail.wizaripost.gameserver.service.GameParametersService;
 import com.gmail.wizaripost.gameserver.service.IGameParametersService;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class GameParametersController {
     //    public GameParameters getParams (@RequestBody Request request){
 
     @RequestMapping(value = "/GameProxy.aspx", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json;charset=UTF-8")
-    public String getParams(
+    public GameParametersResponse getParams(
             @RequestBody String request,
             @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
         return service.getParams(request, gameInstanceID);
