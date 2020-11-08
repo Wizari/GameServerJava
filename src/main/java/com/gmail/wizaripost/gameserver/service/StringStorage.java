@@ -22,6 +22,12 @@ public class StringStorage {
         return takeWin;
     }
 
+    public String getNeedTakeWin() {
+        return needTakeWin;
+    }
+
+    String needTakeWin = "{\"ec\":\"26\",\"el\":\"LangErrorCannotProcessGame\"}";
+
     String takeWin = "{\n" +
             "  \"p\": \"OfferGamblerTakeWin\",\n" +
             "  \"rsp\": {\n" +

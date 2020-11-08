@@ -10,7 +10,8 @@ import com.gmail.wizaripost.gameserver.utils.ChangeResponse;
 public class GameParametersService implements IGameParametersService {
     private StringStorage stringStorage = new StringStorage();
     private ChangeResponse changeResponse = new ChangeResponse();
-    double credits = 50000000.00;
+    private double credits = 50000000.00;
+    boolean needTakeWin = false;
 
     @Override
     public String getGameSessionId(String languageCode, Long gameID, String gameMode) {
@@ -23,10 +24,13 @@ public class GameParametersService implements IGameParametersService {
     public String getParams(String stringRequest, String gameInstanceID) {
         Request request = parsingJsonStringIntoJsonNode(stringRequest);
         if (request.getA().equals("Init")) {
-            return stringStorage.getGameInit();
+//            return stringStorage.getGameInit();
+            return changeResponse.changeCredits(stringStorage.getGameInit(), "c1", credits);
         }
         if (request.getA().equals("TakeWin")) {
-            return stringStorage.getTakeWin();
+            needTakeWin = false;
+//            return stringStorage.getTakeWin();
+            return changeResponse.changeCredits(stringStorage.getTakeWin(), "c1", credits);
         }
         if (request.getA().equals("Bet")) {
             return this.bet(stringRequest);
@@ -36,16 +40,20 @@ public class GameParametersService implements IGameParametersService {
 
     private String bet(String stringRequest){
         Request request = parsingJsonStringIntoJsonNode(stringRequest);
-        double bet = request.getB() * request.getLs();
-        int a = 1, b = 10;
-        int randomNumber = a + (int) (Math.random() * b);
-        if (randomNumber <= 5) {
-            credits += bet;
-            return changeResponse.changeCredits(stringStorage.getBaseGameWin(), "c1", credits);
-        } else {
-            credits -= bet;
-            return changeResponse.changeCredits(stringStorage.getBaseGameLose(), "c1", credits);
+        if (!needTakeWin) {
+            double bet = request.getB() * request.getLs();
+            int a = 1, b = 10;
+            int randomNumber = a + (int) (Math.random() * b);
+            if (randomNumber <= 5) {
+                credits += bet;
+                needTakeWin = true;
+                return changeResponse.changeCredits(stringStorage.getBaseGameWin(), "c1", credits);
+            } else {
+                credits -= bet;
+                return changeResponse.changeCredits(stringStorage.getBaseGameLose(), "c1", credits);
+            }
         }
+        return stringStorage.needTakeWin;
     }
 
     private Request parsingJsonStringIntoJsonNode(String string) {
