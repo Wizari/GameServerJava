@@ -17,7 +17,6 @@ public class GameParametersService implements IGameParametersService {
     private Request request;
 
 
-
     @Override
     public String getGameSessionId(String languageCode, Long gameID, String gameMode) {
         return stringStorage.getGameSession();
@@ -37,19 +36,15 @@ public class GameParametersService implements IGameParametersService {
         }
         if (request.getA().equals("TakeWin") && needTakeWin) {
             needTakeWin = false;
-            credits += 100;
-//            String s1 = String.format("%.2f\n", 4.999995E7);
-//            System.out.println(s1 + " = 4.999995E7");
             gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+            credits += gameParametersResponse.getRsp().getTotalScore();
             gameParametersResponse.getC().setC1(credits);
             return gameParametersResponse;
         }
         if (request.getA().equals("Bet")) {
             return this.bet(stringRequest);
         }
-//        return null;
-//        return gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getNeedTakeWin());
-        return null;
+        return new GameParametersResponse("007", "UnknownAction");
     }
 
     private GameParametersResponse bet(String stringRequest) {
