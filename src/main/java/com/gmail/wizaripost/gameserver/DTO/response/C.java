@@ -1,8 +1,7 @@
 
-package com.gmail.wizaripost.gameserver.DTO.resoult;
+package com.gmail.wizaripost.gameserver.DTO.response;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -13,36 +12,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "WinLinesAmount",
-    "WinLines"
+    "c1",
+    "c2",
+    "c3"
 })
-public class BaseGameResult {
+public class C {
 
-    @JsonProperty("WinLinesAmount")
-    private Integer winLinesAmount;
-    @JsonProperty("WinLines")
-    private List<WinLine> winLines = null;
+    @JsonProperty("c1")
+    private Double c1;
+    @JsonProperty("c2")
+    private Double c2;
+    @JsonProperty("c3")
+    private Double c3;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("WinLinesAmount")
-    public Integer getWinLinesAmount() {
-        return winLinesAmount;
+    @JsonProperty("c1")
+    public Double getC1() {
+        return c1;
     }
 
-    @JsonProperty("WinLinesAmount")
-    public void setWinLinesAmount(Integer winLinesAmount) {
-        this.winLinesAmount = winLinesAmount;
+    @JsonProperty("c1")
+    public void setC1(Double c1) {
+        this.c1 = c1;
     }
 
-    @JsonProperty("WinLines")
-    public List<WinLine> getWinLines() {
-        return winLines;
+    @JsonProperty("c2")
+    public Double getC2() {
+        return c2;
     }
 
-    @JsonProperty("WinLines")
-    public void setWinLines(List<WinLine> winLines) {
-        this.winLines = winLines;
+    @JsonProperty("c2")
+    public void setC2(Double c2) {
+        this.c2 = c2;
+    }
+
+    @JsonProperty("c3")
+    public Double getC3() {
+        return c3;
+    }
+
+    @JsonProperty("c3")
+    public void setC3(Double c3) {
+        this.c3 = c3;
     }
 
     @JsonAnyGetter

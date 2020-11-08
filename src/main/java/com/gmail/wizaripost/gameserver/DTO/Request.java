@@ -1,5 +1,11 @@
 package com.gmail.wizaripost.gameserver.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Request {
     private String a;
     private Long b;

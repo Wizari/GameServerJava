@@ -1,5 +1,5 @@
 
-package com.gmail.wizaripost.gameserver.DTO.resoult;
+package com.gmail.wizaripost.gameserver.DTO.response;
 
 import java.util.HashMap;
 import java.util.List;

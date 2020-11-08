@@ -1,7 +1,7 @@
 package com.gmail.wizaripost.gameserver.controller;
 
 
-import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersResponse;
+import com.gmail.wizaripost.gameserver.DTO.response.GameParametersResponse;
 import com.gmail.wizaripost.gameserver.service.GameParametersService;
 import com.gmail.wizaripost.gameserver.service.IGameParametersService;
 import org.springframework.web.bind.annotation.*;

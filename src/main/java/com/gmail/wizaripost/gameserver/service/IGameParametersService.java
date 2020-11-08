@@ -1,6 +1,6 @@
 package com.gmail.wizaripost.gameserver.service;
 
-import com.gmail.wizaripost.gameserver.DTO.resoult.GameParametersResponse;
+import com.gmail.wizaripost.gameserver.DTO.response.GameParametersResponse;
 
 public interface IGameParametersService {
 
