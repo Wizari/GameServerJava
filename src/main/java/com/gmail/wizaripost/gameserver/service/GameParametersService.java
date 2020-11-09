@@ -42,12 +42,35 @@ public class GameParametersService implements IGameParametersService {
             return gameParametersResponse;
         }
         if (request.getA().equals("Bet")) {
-            return this.bet(stringRequest);
+            return this.bet();
         }
         return new GameParametersResponse("007", "UnknownAction");
     }
 
-    private GameParametersResponse bet(String stringRequest) {
+    @Override
+    public GameParametersResponse jsonGetParams(Request request, String gameInstanceID) {
+        this.request = request;
+        if (request.getA().equals("Init")) {
+            credits = 5000.00;
+            needTakeWin = false;
+            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
+            gameParametersResponse.getC().setC1(credits);
+            return gameParametersResponse;
+        }
+        if (request.getA().equals("TakeWin") && needTakeWin) {
+            needTakeWin = false;
+            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+            credits += gameParametersResponse.getRsp().getTotalScore();
+            gameParametersResponse.getC().setC1(credits);
+            return gameParametersResponse;
+        }
+        if (request.getA().equals("Bet")) {
+            return this.bet();
+        }
+        return new GameParametersResponse("007", "UnknownAction");
+    }
+
+    private GameParametersResponse bet() {
         if (!needTakeWin) {
             credits -= request.getB() * request.getLs();
             int a = 1, b = 10;

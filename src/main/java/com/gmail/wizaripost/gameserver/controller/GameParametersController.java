@@ -1,6 +1,7 @@
 package com.gmail.wizaripost.gameserver.controller;
 
 
+import com.gmail.wizaripost.gameserver.DTO.Request;
 import com.gmail.wizaripost.gameserver.DTO.response.GameParametersResponse;
 import com.gmail.wizaripost.gameserver.service.GameParametersService;
 import com.gmail.wizaripost.gameserver.service.IGameParametersService;
@@ -19,6 +20,13 @@ public class GameParametersController {
             @RequestBody String request,
             @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
         return service.getParams(request, gameInstanceID);
+    }
+
+    @RequestMapping(value = "/GameProxy.aspx", method = RequestMethod.POST, consumes = "application/json", produces = "application/json;charset=UTF-8")
+    public GameParametersResponse jsonGetParams(
+            @RequestBody Request request,
+            @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
+        return service.jsonGetParams(request, gameInstanceID);
     }
 
 
