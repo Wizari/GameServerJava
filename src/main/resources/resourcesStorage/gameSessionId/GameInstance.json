@@ -1,0 +1,22 @@
+{
+  "Status": true,
+  "InitialParameters": {
+    "FileServerAddress": "https://gox-vocs-dev.novomatic-tech.com/FileLoad.aspx",
+    "GameServerAddress": "https://gox-vocs-dev.novomatic-tech.com/GameProxy.aspx",
+    "GameInstanceID": "6632b30e-f692-4097-be56-dd5100fb90ae-74131",
+    "GameID": 250,
+    "GameUGN": "N/A",
+    "GameMode": "demoplay",
+    "LoaderVersion": "3.17.3",
+    "LoaderContextVersion": "3.17.3",
+    "LanguageCode": "EN",
+    "CurrencyCode": "FUN",
+    "AspectRatio": "",
+    "IsHistoryMode": false,
+    "HistoryNo": 1,
+    "MinimalPeriodBetweenBetsInSeconds": 0,
+    "AccountServicesAddress": "",
+    "GameSessionID": 74131,
+    "GameSessionSecureToken": "6632b30e-f692-4097-be56-dd5100fb90ae"
+  }
+}

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.wizaripost.gameserver.DTO.Request;
 import com.gmail.wizaripost.gameserver.DTO.response.GameParametersResponse;
+import com.gmail.wizaripost.gameserver.storage.IResponseStorage;
+import com.gmail.wizaripost.gameserver.storage.ResponseStorage;
 import com.gmail.wizaripost.gameserver.utils.ChangeResponse;
 
 
@@ -15,36 +17,12 @@ public class GameParametersService implements IGameParametersService {
     private boolean needTakeWin = false;
     private GameParametersResponse gameParametersResponse;
     private Request request;
+    private IResponseStorage responseStorage = new ResponseStorage();
 
 
     @Override
     public String getGameSessionId(String languageCode, Long gameID, String gameMode) {
         return stringStorage.getGameSession();
-
-    }
-
-    @Override
-    public GameParametersResponse getParams(String stringRequest, String gameInstanceID) {
-        request = parsingJsonStringIntoRequest(stringRequest);
-
-        if (request.getA().equals("Init")) {
-            credits = 5000.00;
-            needTakeWin = false;
-            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
-            gameParametersResponse.getC().setC1(credits);
-            return gameParametersResponse;
-        }
-        if (request.getA().equals("TakeWin") && needTakeWin) {
-            needTakeWin = false;
-            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
-            credits += gameParametersResponse.getRsp().getTotalScore();
-            gameParametersResponse.getC().setC1(credits);
-            return gameParametersResponse;
-        }
-        if (request.getA().equals("Bet")) {
-            return this.bet();
-        }
-        return new GameParametersResponse("007", "UnknownAction");
     }
 
     @Override
@@ -53,13 +31,16 @@ public class GameParametersService implements IGameParametersService {
         if (request.getA().equals("Init")) {
             credits = 5000.00;
             needTakeWin = false;
-            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
+//            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
+            gameParametersResponse = responseStorage.getGameInit();
+            System.out.println(gameParametersResponse);
             gameParametersResponse.getC().setC1(credits);
             return gameParametersResponse;
         }
         if (request.getA().equals("TakeWin") && needTakeWin) {
             needTakeWin = false;
-            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+//            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+            gameParametersResponse = responseStorage.getTakeWin();
             credits += gameParametersResponse.getRsp().getTotalScore();
             gameParametersResponse.getC().setC1(credits);
             return gameParametersResponse;
@@ -76,18 +57,20 @@ public class GameParametersService implements IGameParametersService {
             int a = 1, b = 10;
             int randomNumber = a + (int) (Math.random() * b);
             if (randomNumber <= 5) {
-                gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameWin());
+//                gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameWin());
+                gameParametersResponse = responseStorage.getBaseGameWin();
                 gameParametersResponse.getC().setC1(credits);
                 needTakeWin = true;
                 return gameParametersResponse;
             } else {
-                gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameLose());
+//                gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getBaseGameLose());
+                gameParametersResponse = responseStorage.getBaseGameLose();
                 gameParametersResponse.getC().setC1(credits);
                 return gameParametersResponse;
             }
         }
-//        return new GameParametersResponse("26", "LangErrorCannotProcessGame");
-        return gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getNeedTakeWin());
+        return new GameParametersResponse("26", "LangErrorCannotProcessGame");
+//        return gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getNeedTakeWin());
     }
 
     private Request parsingJsonStringIntoRequest(String string) {
@@ -115,6 +98,30 @@ public class GameParametersService implements IGameParametersService {
         return params;
     }
 
+
+//    @Override
+//    public GameParametersResponse getParams(String stringRequest, String gameInstanceID) {
+//        request = parsingJsonStringIntoRequest(stringRequest);
+//
+//        if (request.getA().equals("Init")) {
+//            credits = 5000.00;
+//            needTakeWin = false;
+//            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getGameInit());
+//            gameParametersResponse.getC().setC1(credits);
+//            return gameParametersResponse;
+//        }
+//        if (request.getA().equals("TakeWin") && needTakeWin) {
+//            needTakeWin = false;
+//            gameParametersResponse = parsingJsonStringIntoGameParametersJSON(stringStorage.getTakeWin());
+//            credits += gameParametersResponse.getRsp().getTotalScore();
+//            gameParametersResponse.getC().setC1(credits);
+//            return gameParametersResponse;
+//        }
+//        if (request.getA().equals("Bet")) {
+//            return this.bet();
+//        }
+//        return new GameParametersResponse("007", "UnknownAction");
+//    }
 }
 
 

@@ -1,0 +1,262 @@
+{
+  "p": "GameStart",
+  "rsp": {
+    "GameMatrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    ],
+    "SelectedBetPerLine": 1,
+    "SelectedLinesAmount": 50,
+    "Symbols": [
+      {
+        "SymbolId": 0,
+        "SymbolName": "SEVEN"
+      },
+      {
+        "SymbolId": 1,
+        "SymbolName": "BELL"
+      },
+      {
+        "SymbolId": 2,
+        "SymbolName": "WATERMELON"
+      },
+      {
+        "SymbolId": 3,
+        "SymbolName": "GRAPES"
+      },
+      {
+        "SymbolId": 4,
+        "SymbolName": "PLUM"
+      },
+      {
+        "SymbolId": 5,
+        "SymbolName": "LEMON"
+      },
+      {
+        "SymbolId": 6,
+        "SymbolName": "ORANGE"
+      },
+      {
+        "SymbolId": 7,
+        "SymbolName": "CHERRY"
+      },
+      {
+        "SymbolId": 8,
+        "SymbolName": "WILD"
+      }
+    ],
+    "WinDescriptors": [
+      {
+        "WinDescriptorId": 0,
+        "SymbolName": "SEVEN",
+        "SymbolAmount": 5,
+        "Score": 1000
+      },
+      {
+        "WinDescriptorId": 1,
+        "SymbolName": "SEVEN",
+        "SymbolAmount": 4,
+        "Score": 250
+      },
+      {
+        "WinDescriptorId": 2,
+        "SymbolName": "SEVEN",
+        "SymbolAmount": 3,
+        "Score": 50
+      },
+      {
+        "WinDescriptorId": 3,
+        "SymbolName": "BELL",
+        "SymbolAmount": 5,
+        "Score": 600
+      },
+      {
+        "WinDescriptorId": 4,
+        "SymbolName": "BELL",
+        "SymbolAmount": 4,
+        "Score": 100
+      },
+      {
+        "WinDescriptorId": 5,
+        "SymbolName": "BELL",
+        "SymbolAmount": 3,
+        "Score": 25
+      },
+      {
+        "WinDescriptorId": 6,
+        "SymbolName": "WATERMELON",
+        "SymbolAmount": 5,
+        "Score": 200
+      },
+      {
+        "WinDescriptorId": 7,
+        "SymbolName": "WATERMELON",
+        "SymbolAmount": 4,
+        "Score": 50
+      },
+      {
+        "WinDescriptorId": 8,
+        "SymbolName": "WATERMELON",
+        "SymbolAmount": 3,
+        "Score": 10
+      },
+      {
+        "WinDescriptorId": 9,
+        "SymbolName": "GRAPES",
+        "SymbolAmount": 5,
+        "Score": 200
+      },
+      {
+        "WinDescriptorId": 10,
+        "SymbolName": "GRAPES",
+        "SymbolAmount": 4,
+        "Score": 50
+      },
+      {
+        "WinDescriptorId": 11,
+        "SymbolName": "GRAPES",
+        "SymbolAmount": 3,
+        "Score": 10
+      },
+      {
+        "WinDescriptorId": 12,
+        "SymbolName": "PLUM",
+        "SymbolAmount": 5,
+        "Score": 100
+      },
+      {
+        "WinDescriptorId": 13,
+        "SymbolName": "PLUM",
+        "SymbolAmount": 4,
+        "Score": 25
+      },
+      {
+        "WinDescriptorId": 14,
+        "SymbolName": "PLUM",
+        "SymbolAmount": 3,
+        "Score": 5
+      },
+      {
+        "WinDescriptorId": 15,
+        "SymbolName": "LEMON",
+        "SymbolAmount": 5,
+        "Score": 100
+      },
+      {
+        "WinDescriptorId": 16,
+        "SymbolName": "LEMON",
+        "SymbolAmount": 4,
+        "Score": 25
+      },
+      {
+        "WinDescriptorId": 17,
+        "SymbolName": "LEMON",
+        "SymbolAmount": 3,
+        "Score": 5
+      },
+      {
+        "WinDescriptorId": 18,
+        "SymbolName": "ORANGE",
+        "SymbolAmount": 5,
+        "Score": 100
+      },
+      {
+        "WinDescriptorId": 19,
+        "SymbolName": "ORANGE",
+        "SymbolAmount": 4,
+        "Score": 25
+      },
+      {
+        "WinDescriptorId": 20,
+        "SymbolName": "ORANGE",
+        "SymbolAmount": 3,
+        "Score": 5
+      },
+      {
+        "WinDescriptorId": 21,
+        "SymbolName": "CHERRY",
+        "SymbolAmount": 5,
+        "Score": 100
+      },
+      {
+        "WinDescriptorId": 22,
+        "SymbolName": "CHERRY",
+        "SymbolAmount": 4,
+        "Score": 25
+      },
+      {
+        "WinDescriptorId": 23,
+        "SymbolName": "CHERRY",
+        "SymbolAmount": 3,
+        "Score": 5
+      }
+    ],
+    "BetPerLine": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      20,
+      40
+    ],
+    "GamblerMaxHistorySize": 5,
+    "GamblerMultiplier": 2,
+    "GamblerPlayLimit": 5,
+    "GamblerWinLimit": 1000000,
+    "Lines": [
+      50
+    ],
+    "MaxBet": 40,
+    "MaxWin": 1000000,
+    "ActiveLanguage": "EN",
+    "Languages": [
+      "CS",
+      "EN"
+    ],
+    "CurrencyCode": "FUN",
+    "Yield": 94,
+    "p": "GameStart"
+  },
+  "c": {
+    "c1": 50000000.00,
+    "c2": 0.0,
+    "c3": 0.0
+  },
+  "gp": "0",
+  "v": "1.0.0.0"
+}

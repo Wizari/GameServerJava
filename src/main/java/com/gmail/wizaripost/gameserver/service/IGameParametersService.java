@@ -5,11 +5,10 @@ import com.gmail.wizaripost.gameserver.DTO.response.GameParametersResponse;
 
 public interface IGameParametersService {
 
-//    GameParameters getParams(Request request);
-//
-//    GameParameters getParams(String stringRequest);
 
-    GameParametersResponse getParams(String stringRequest, String gameInstanceID);
+
+
+//    GameParametersResponse getParams(String stringRequest, String gameInstanceID);
 
     GameParametersResponse jsonGetParams(Request request, String gameInstanceID);
 
