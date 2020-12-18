@@ -8,7 +8,7 @@ public interface IGameParametersService {
 
 
 
-//    GameParametersResponse getParams(String stringRequest, String gameInstanceID);
+    GameParametersResponse getParams(String stringRequest, String gameInstanceID);
 
     GameParametersResponse jsonGetParams(Request request, String gameInstanceID);
 

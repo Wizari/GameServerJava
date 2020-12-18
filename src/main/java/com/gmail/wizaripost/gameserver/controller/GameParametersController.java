@@ -32,14 +32,16 @@ public class GameParametersController {
         System.out.println(gameMode);
         return service.getGameSessionId(languageCode, gameID, gameMode);
     }
+
+
+    @RequestMapping(value = "/GameProxy.aspx", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json;charset=UTF-8")
+    public GameParametersResponse getParams(
+            @RequestBody String request,
+            @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
+        return service.getParams(request, gameInstanceID);
+    }
 }
 
 
-//    @RequestMapping(value = "/GameProxy.aspx", method = RequestMethod.POST, consumes = "text/plain", produces = "application/json;charset=UTF-8")
-//    public GameParametersResponse getParams(
-//            @RequestBody String request,
-//            @RequestParam(value = "GameInstanceID", required = false, defaultValue = "EN") String gameInstanceID) {
-//        return service.getParams(request, gameInstanceID);
-//    }
 
 
