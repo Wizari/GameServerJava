@@ -27,8 +27,7 @@ public class GameParametersService implements IGameParametersService {
 
     @Override
     public GameParametersResponse getParams(String stringRequest, String gameInstanceID) {
-        request = parsingJsonStringIntoRequest(stringRequest);
-        return this.jsonGetParams(request, gameInstanceID);
+        return this.jsonGetParams(parsingJsonStringIntoRequest(stringRequest), gameInstanceID);
 
     }
 
